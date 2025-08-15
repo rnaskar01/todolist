@@ -4,10 +4,13 @@ const mongoose = require("mongoose");
 const ejs = require("ejs");
 const app = express();
 const port = 3000;
+require("dotenv").config()
+
+
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-mongoose.connect(`mongodb+srv://rakeshnaskar499:${import.meta.env.MONGO_KEY}@cluster0.lp3gy0w.mongodb.net/TodolistDB`,{useNewUrlparser: true});
+mongoose.connect(`mongodb+srv://rakeshnaskar499:${process.env.MONGO_KEY}@cluster0.lp3gy0w.mongodb.net/TodolistDB`,{useNewUrlparser: true});
 
 
 const itemSchema = {

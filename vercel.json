@@ -1,9 +1,19 @@
 {
   "version": 2,
   "builds": [
-    { "src": "app.js", "use": "@vercel/node" }
+    { "src": "app.js", "use": "@vercel/node" },
+    { "src": "public/**/*", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "app.js" }
+    // API routes go to Express
+    { "src": "/api/(.*)", "dest": "app.js" },
+
+    // Static assets go directly
+    { "src": "/public/(.*)", "dest": "/public/$1" },
+
+    // All other frontend requests serve index.html
+    { "src": "/(.*)", "dest": "/public/index.html" }
   ]
 }
+
+
